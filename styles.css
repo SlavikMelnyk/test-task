@@ -190,8 +190,8 @@ input {
 
 .field:focus-within > span:first-child,
 .field:focus-within > label:first-child,
-.field:has(input:not(:placeholder-shown)) > span:first-child,
-.field:has(input:not(:placeholder-shown)) > label:first-child,
+.field:has(input:not(.date-source):not(:placeholder-shown)) > span:first-child,
+.field:has(input:not(.date-source):not(:placeholder-shown)) > label:first-child,
 .field.tag-field:has(em) > span:first-child,
 .field.select:has(button:not(:empty)) > span:first-child {
   top: -7px;
@@ -262,8 +262,47 @@ input {
   box-shadow: 0 14px 32px rgba(34, 34, 45, 0.14);
 }
 
-.combo.open .combo-menu {
+.combo.open .combo-menu,
+.field.is-open .combo-menu {
   display: block;
+}
+
+.field.select button,
+.field.tag-field {
+  cursor: pointer;
+}
+
+.field.tag-field em {
+  position: relative;
+  z-index: 1;
+  cursor: default;
+}
+
+.field.tag-field:focus-visible {
+  outline: 2px solid var(--purple-line);
+  outline-offset: 2px;
+}
+
+.combo-option.is-selected {
+  color: var(--purple);
+  font-weight: 600;
+  background: #f6f2ff;
+}
+
+.combo-option.is-selected::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  background: url('./assets/check.svg') no-repeat center / contain;
+  filter: invert(13%) sepia(95%) saturate(3540%) hue-rotate(265deg) brightness(78%) contrast(115%);
+}
+
+.combo-option:disabled,
+.combo-option.is-disabled {
+  color: var(--soft);
+  cursor: not-allowed;
+  background: #fff;
 }
 
 .combo-group {
@@ -361,7 +400,7 @@ input {
   display: none;
 }
 
-.select button::after {
+.select > button::after {
   content: "";
   position: absolute;
   right: 9px;
@@ -446,25 +485,53 @@ input {
 
 /* -- Calendar / disabled states ------------------------------------------ */
 
-.calendar-field.is-disabled input,
-.calendar-field.is-disabled i {
-  color: var(--soft);
-}
-
 .calendar-field.is-disabled input {
+  color: var(--soft);
   background: #f9fafb;
 }
 
-.calendar-field i {
+.calendar-field .date-trigger,
+.datebox > .date-trigger {
   position: absolute;
   right: 10px;
   top: 50%;
+  display: block;
   width: 20px;
   height: 20px;
+  margin: 0;
+  padding: 0;
   transform: translateY(-50%);
+  color: transparent;
   background-color: #22222d;
   -webkit-mask: url('./assets/availability.svg') no-repeat center / contain;
   mask: url('./assets/availability.svg') no-repeat center / contain;
+  border: 0;
+  border-radius: 0;
+  font-size: 0;
+  cursor: pointer;
+}
+
+.calendar-field.is-disabled .date-trigger,
+.warranty-card.is-disabled .datebox .date-trigger {
+  background-color: var(--soft);
+  cursor: not-allowed;
+}
+
+.calendar-field .date-source,
+.datebox .date-source {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  display: block;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 /* -- Check box ----------------------------------------------------------- */
@@ -477,6 +544,17 @@ input {
   background: #fff;
   border: 1px solid #bfc0c4;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+.check input:checked {
+  background: var(--purple) url('./assets/check.svg') center / 12px 12px no-repeat;
+  border-color: var(--purple);
+}
+
+.check input:focus-visible {
+  outline: 2px solid var(--purple-line);
+  outline-offset: 2px;
 }
 
 /* -- Tag field (Vessel Is Good For) -------------------------------------- */
@@ -573,6 +651,23 @@ input {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  cursor: pointer;
+}
+
+.price-input b:focus-visible {
+  outline: 2px solid var(--purple-line);
+  outline-offset: 2px;
+}
+
+.price-input.is-open b img {
+  transform: rotate(180deg);
+}
+
+.price-input .currency-menu {
+  top: 44px;
+  left: auto;
+  right: 0;
+  width: 140px;
 }
 
 /* -- Market info ---------------------------------------------------------- */
@@ -631,48 +726,8 @@ input {
   color: var(--soft);
 }
 
-.datebox {
-  position: relative;
-  display: block;
-  height: 40px;
-}
-
-.datebox span {
-  position: absolute;
-  left: 12px;
-  top: -8px;
-  z-index: 1;
-  padding: 0 4px;
-  color: var(--muted);
-  background: #fff;
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 16px;
-}
-
 .datebox input {
-  width: 100%;
-  height: 40px;
-  padding: 14px 36px 6px 12px;
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  font-size: 12px;
-  line-height: 18px;
-}
-
-.datebox > i {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  transform: translateY(-50%);
-  background-color: #22222d;
-  -webkit-mask: url('./assets/availability.svg') no-repeat center / contain;
-  mask: url('./assets/availability.svg') no-repeat center / contain;
-  pointer-events: none;
+  padding-right: 36px;
 }
 
 .toggle {
@@ -711,21 +766,106 @@ input {
   background: #f9fafb;
 }
 
-/* -- Warm heat variant (matches image 3) --------------------------------- */
+/* -- Listing heat indicator (5 levels) ----------------------------------- */
 
-body.is-warm {
+.heat {
+  --heat-progress: 0%;
+  --heat-fill: transparent;
+  --heat-icon-bg: #d6efff;
+  --heat-icon-color: #4fb7e6;
+  transition: background-color 0.6s ease;
+}
+
+.heat > * {
+  position: relative;
+  z-index: 1;
+}
+
+.heat-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: var(--heat-progress);
+  background: var(--heat-fill);
+  opacity: 0.55;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.6s ease;
+}
+
+.heat .snow {
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  background: var(--heat-icon-bg);
+  color: var(--heat-icon-color);
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+.heat-icon-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.heat-icon-image {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.heat.is-pulsing .heat-icon-glyph {
+  animation: heatPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes heatPulse {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.35) rotate(-8deg); }
+  100% { transform: scale(1); }
+}
+
+.heat-label {
+  transition: color 0.6s ease;
+}
+
+.heat[data-heat-level="1"] { --heat-fill: #d6efff; --heat-icon-bg: #d6efff; --heat-icon-color: #4fb7e6; }
+.heat[data-heat-level="2"] { --heat-fill: #b3e5fc; --heat-icon-bg: #b3e5fc; --heat-icon-color: #0288d1; }
+.heat[data-heat-level="3"] { --heat-fill: #fff59d; --heat-icon-bg: #fff7c8; --heat-icon-color: #c69b00; }
+.heat[data-heat-level="4"] { --heat-fill: #ffcc80; --heat-icon-bg: #ffe2bd; --heat-icon-color: #ff9a1f; }
+.heat[data-heat-level="5"] { --heat-fill: #ff8a65; --heat-icon-bg: #ffccbc; --heat-icon-color: #d84315; }
+
+main.screen {
+  transition: background 0.6s ease;
+}
+
+body[data-heat-level="1"] main.screen {
   background:
-    radial-gradient(ellipse 800px 360px at 70% 0%, #fff2dc 0%, rgba(255, 242, 220, 0) 70%),
+    radial-gradient(ellipse 100% 220px at 50% 0%, #d6efff 0%, rgba(214, 239, 255, 0) 70%),
     #fff;
 }
 
-body.is-warm .heat {
-  background: #fff7ec;
+body[data-heat-level="2"] main.screen {
+  background:
+    radial-gradient(ellipse 100% 220px at 50% 0%, #b3e5fc 0%, rgba(179, 229, 252, 0) 70%),
+    #fff;
 }
 
-body.is-warm .snow {
-  color: #ff9a1f;
-  background: #ffe2bd;
+body[data-heat-level="3"] main.screen {
+  background:
+    radial-gradient(ellipse 100% 220px at 50% 0%, #fff59d 0%, rgba(255, 245, 157, 0) 70%),
+    #fff;
+}
+
+body[data-heat-level="4"] main.screen {
+  background:
+    radial-gradient(ellipse 100% 220px at 50% 0%, #ffe082 0%, rgba(255, 224, 130, 0) 70%),
+    #fff;
+}
+
+body[data-heat-level="5"] main.screen {
+  background:
+    radial-gradient(ellipse 100% 220px at 50% 0%, #ffab91 0%, rgba(255, 171, 145, 0) 70%),
+    #fff;
 }
 
 /* -- Wider layout (image 3) ---------------------------------------------- */
