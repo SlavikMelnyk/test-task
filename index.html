@@ -11,212 +11,275 @@
       rel="stylesheet"
     />
     <link rel="icon" href="data:," />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#2f2f39",
+              "ink-2": "#3c3c46",
+              "ink-dark": "#22222d",
+              muted: "#727279",
+              soft: "#8c8c92",
+              line: "#dcdcde",
+              purple: "#4b0ea3",
+              "purple-line": "#8b48e7",
+              "purple-soft": "#fbf8ff",
+              warm: "#fff7ec",
+              "warm-edge": "#ffd9a8",
+              sky: "#eff9ff",
+              "sky-ink": "#4fb7e6",
+            },
+            fontFamily: {
+              sans: ["Figtree", "Arial", "sans-serif"],
+              display: ['"Red Hat Display"', "Arial", "sans-serif"],
+            },
+            boxShadow: {
+              card: "0 4px 24px 4px rgba(132, 144, 163, 0.08)",
+              menu: "0 14px 32px rgba(34, 34, 45, 0.14)",
+              modal: "0 24px 80px rgba(8, 7, 12, 0.28)",
+            },
+            screens: {
+              xl: "1280px",
+              "2xl": "1440px",
+            },
+          },
+        },
+      };
+    </script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
-    <main class="screen" aria-labelledby="page-title">
-      <aside class="rail" aria-label="Listing steps">
-        <a class="brand" href="#" aria-label="Yacht Way">
+  <body class="m-0 overflow-x-hidden bg-white text-ink font-sans text-base">
+    <main
+      class="screen relative grid w-full min-h-screen bg-white grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] 2xl:grid-cols-[324px_minmax(0,1fr)]"
+      aria-labelledby="page-title"
+    >
+      <aside
+        class="rail sticky top-0 z-[2] flex flex-col w-full lg:w-[280px] 2xl:w-[324px] h-auto lg:h-screen lg:min-h-[800px] px-5 py-4 lg:py-[34px] lg:px-7 2xl:px-10 2xl:pb-[38px] text-white rounded-none lg:rounded-r-[2px]"
+        aria-label="Listing steps"
+      >
+        <a class="brand relative block flex-none w-[156px] h-[38px] text-white font-display no-underline" href="#" aria-label="Yacht Way">
           <span>YACHT</span>
           <span class="brand-light">WAY</span>
           <img class="brand-mark" src="./assets/logo-subtract.svg" alt="" />
         </a>
 
-        <nav class="steps">
+        <nav class="steps grid grid-cols-3 sm:grid-cols-3 lg:flex lg:flex-col gap-2 lg:gap-0 mt-3 lg:mt-6 2xl:mt-[26px] 2xl:w-[244px]">
           <a class="step done" href="#">
-            <span class="step-icon turn">↵</span>
-            <span>Listing Contact</span>
-            <span class="step-mark">✓</span>
-            <span class="step-mark">⌁</span>
+            <span class="step-icon turn">
+              <img src="./assets/listing-contact.svg" alt="" width="16" height="16" />
+            </span>
+            <span class="step-row">
+              <span class="text-base font-normal leading-6 text-white">Listing Contact</span>
+              <span class="step-marks">
+                <span class="step-mark"><img src="./assets/check.svg" alt="" width="16" height="16" /></span>
+                <span class="step-mark"><img src="./assets/edit.svg" alt="" width="16" height="16" /></span>
+              </span>
+            </span>
           </a>
           <a class="step current" href="#" aria-current="step">
-            <span class="step-icon boat">♟</span>
-            <span>General Info</span>
+            <span class="step-icon boat">
+              <img src="./assets/general-info.svg" alt="" width="20" height="20" />
+            </span>
+            <span class="text-lg font-medium leading-7 text-white">General Info</span>
           </a>
-          <a class="step" href="#"><span class="step-icon">✦</span><span>Power</span></a>
-          <a class="step" href="#"><span class="step-icon">✣</span><span>Vessel Features</span></a>
-          <a class="step" href="#"><span class="step-icon">▥</span><span>Accommodation</span></a>
-          <a class="step" href="#"><span class="step-icon">▣</span><span>Photos</span></a>
-          <a class="step" href="#"><span class="step-icon">■</span><span>Videos</span></a>
-          <a class="step tour" href="#"><span class="step-icon text">3D</span><span>3D Tour &amp; Brochure</span></a>
-          <a class="step" href="#"><span class="step-icon">≡</span><span>Listing Summary</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="./assets/power.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">Power</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="./assets/vessel-features.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">Vessel Features</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="./assets/accommodation.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">Accommodation</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="./assets/photos.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">Photos</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="./assets/videos.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">Videos</span></a>
+          <a class="step tour" href="#"><span class="step-icon"><img src="./assets/3d-tour.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">3D Tour &amp; Brochure</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="./assets/listing-summary.svg" alt="" width="16" height="16" /></span><span class="text-base font-normal leading-6 text-muted">Listing Summary</span></a>
         </nav>
 
-        <a class="create-new" href="#">CREATE NEW LISTING</a>
+        <a class="create-new mt-3 lg:mt-auto text-white text-xs font-medium leading-5 uppercase no-underline" href="#">Create new listing</a>
       </aside>
 
-      <button class="draft-button" type="button">Save to Drafts &amp; Exit</button>
+      <button
+        class="draft-button fixed lg:absolute top-4 lg:top-8 right-4 lg:right-6 2xl:right-[60px] z-[3] lg:w-[189px] min-w-[160px] h-10 py-2 px-4 text-ink-dark bg-white lg:bg-transparent border border-ink-dark rounded-[4px] text-sm font-medium leading-5"
+        type="button"
+      >
+        Save to Drafts &amp; Exit
+      </button>
 
-      <section class="content" aria-label="General info form">
-        <header class="header">
-          <h1 id="page-title">General Info</h1>
-          <div class="heat">
-            <span class="snow">✳</span>
-            <span>Listing Heat: <strong>Freezing</strong></span>
-            <span class="help-dot">?</span>
+      <section class="content relative w-full lg:w-[564px] mx-auto px-4 lg:px-0 pt-8 lg:pt-[80px] pb-14" aria-label="General info form">
+        <header class="header relative min-h-[58px] grid lg:block gap-3 mb-6 lg:mb-0">
+          <h1 id="page-title" class="m-0 text-ink text-2xl 2xl:text-[26px] font-medium leading-8 2xl:leading-[40px]">General Info</h1>
+          <div class="heat lg:absolute lg:right-0 lg:-top-2 flex items-center gap-2 h-10 pl-1 pr-2 py-1 bg-[#f9fafb] rounded-3xl justify-self-start">
+            <span class="snow flex items-center justify-center w-8 h-8"><img src="./assets/snow.png" alt="" width="32" height="32" /></span>
+            <span class="text-base font-normal leading-6 text-ink-2">Listing Heat: <strong class="text-base font-semibold leading-6 text-ink-dark">Freezing</strong></span>
+            <span class="help-dot"></span>
           </div>
         </header>
 
-        <form class="form" novalidate>
-          <section class="group vessel-details">
-            <h2><span>⚓</span> Vessel Details</h2>
-            <div class="row two">
-              <div class="field combo" data-combo="make">
+        <form class="form flex flex-col" novalidate>
+          <section class="group vessel-details relative mb-11 flex flex-col gap-5">
+            <h2 class="flex items-center gap-2 h-5 m-0 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/vessel-details.svg" alt="" width="20" height="20" /> Vessel Details</h2>
+            <div class="row two grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="field combo relative block h-10" data-combo="make">
                 <label for="make-input">Make*</label>
-                <input id="make-input" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="make-options" />
+                <input id="make-input" placeholder=" " autocomplete="off" role="combobox" aria-expanded="false" aria-controls="make-options" />
                 <button class="combo-toggle" type="button" aria-label="Show make options"></button>
                 <div class="combo-menu" id="make-options" role="listbox"></div>
                 <p class="field-message" id="make-message"></p>
               </div>
-              <div class="field combo" data-combo="model">
+              <div class="field combo relative block h-10" data-combo="model">
                 <label for="model-input">Model*</label>
-                <input id="model-input" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="model-options" />
+                <input id="model-input" placeholder=" " autocomplete="off" role="combobox" aria-expanded="false" aria-controls="model-options" />
                 <button class="combo-toggle" type="button" aria-label="Show model options"></button>
                 <div class="combo-menu" id="model-options" role="listbox"></div>
                 <p class="field-message" id="model-message"></p>
               </div>
             </div>
-            <div class="row two">
-              <div class="field combo" data-combo="year">
+            <div class="row two grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="field combo relative block h-10" data-combo="year">
                 <label for="year-input">Year*</label>
-                <input id="year-input" autocomplete="off" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="year-options" />
+                <input id="year-input" placeholder=" " autocomplete="off" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="year-options" />
                 <button class="combo-toggle" type="button" aria-label="Show year options"></button>
                 <div class="combo-menu year-menu" id="year-options" role="listbox"></div>
                 <p class="field-message" id="year-message"></p>
               </div>
-              <label class="field hull-field" for="hull-number">
+              <label class="field hull-field relative block h-10" for="hull-number">
                 <span>Hull or Production Number*</span>
-                <input id="hull-number" maxlength="20" />
-                <i class="help-dot" title="If still in production or no official HIN exists yet, enter the production number as a placeholder.">?</i>
+                <input id="hull-number" placeholder=" " maxlength="20" />
+                <i class="help-dot" title="If still in production or no official HIN exists yet, enter the production number as a placeholder."></i>
                 <p class="field-message" id="hull-message"></p>
               </label>
             </div>
-            <label class="field full"><span>Internal ID</span><input /><i class="help-dot">?</i></label>
-            <div class="row two">
-              <label class="field"><span>Current Name</span><input /></label>
-              <label class="field"><span>Launch Name</span><input /></label>
+            <label class="field full relative block h-10 w-full"><span>Internal ID</span><input placeholder=" " /><i class="help-dot"></i></label>
+            <div class="row two grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <label class="field relative block h-10"><span>Current Name</span><input placeholder=" " /></label>
+              <label class="field relative block h-10"><span>Launch Name</span><input placeholder=" " /></label>
             </div>
-            <div class="row two segmented" data-segmented="condition">
+            <div class="row two segmented grid grid-cols-1 sm:grid-cols-2 gap-5" data-segmented="condition">
               <button type="button" data-value="new">New</button>
               <button type="button" data-value="pre-owned">Pre-owned</button>
             </div>
           </section>
 
-          <section class="group vessel-location">
-            <h2><span>◎</span> Vessel Location</h2>
-            <label class="field full select"><span>Vessel Location*</span><button type="button"></button><i class="help-dot">?</i></label>
-            <p class="hint">Your vessel will appear in search results for each location you add. No need to create separate listings.</p>
-            <label class="check"><input type="checkbox" /><span>Not For Sale to US Citizens while in US waters</span></label>
+          <section class="group vessel-location relative mb-9 flex flex-col gap-5">
+            <h2 class="flex items-center gap-2 h-5 m-0 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/location.svg" alt="" width="20" height="20" /> Vessel Location</h2>
+            <div class="flex flex-col gap-1">
+              <label class="field full select relative block h-10 w-full"><span>Vessel Location*</span><button type="button"></button><i class="help-dot"></i></label>
+              <p class="hint flex items-start gap-1 m-0 text-muted text-sm font-normal leading-5"><span class="hint-icon"></span><span>Your vessel will appear in search results for each location you add. No need to create separate listings.</span></p>
+            </div>
+            <label class="check flex items-center gap-3 h-5 text-ink-dark text-sm font-medium leading-5"><input type="checkbox" /><span>Not For Sale to US Citizens while in US waters</span></label>
           </section>
 
-          <section class="group vessel-type">
-            <h2><span>⚓</span> Vessel Type</h2>
-            <label class="field full select"><span>Vessel Type*</span><button type="button"></button><b>0/4</b></label>
+          <section class="group vessel-type relative mb-6">
+            <h2 class="flex items-center gap-2 h-5 m-0 mb-4 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/type.svg" alt="" width="20" height="20" /> Vessel Type</h2>
+            <label class="field full select relative block h-10 w-full"><span>Vessel Type*</span><button type="button"></button><b><span>0</span><span>/4</span></b></label>
           </section>
 
-          <section class="group availability">
-            <h2><span>▣</span> Availability</h2>
-            <div class="row two segmented" data-segmented="availability">
+          <section class="group availability relative mb-6">
+            <h2 class="flex items-center gap-2 h-5 m-0 mb-4 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/availability.svg" alt="" width="20" height="20" /> Availability</h2>
+            <div class="row two segmented grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5" data-segmented="availability">
               <button type="button" data-value="now">Available Now</button>
               <button type="button" data-value="later">Available Later</button>
             </div>
-            <label class="field full calendar-field"><span>Completion Date</span><input id="completion-date" /><i>□</i></label>
+            <label class="field full calendar-field relative block h-10 w-full"><span>Completion Date</span><input id="completion-date" placeholder=" " /><i></i></label>
           </section>
 
-          <section class="group good-for">
-            <h2><span>⚓</span> Vessel Is Good For: <i class="help-dot">?</i></h2>
-            <div class="field full tag-field">
+          <section class="group good-for relative mb-10">
+            <h2 class="flex items-center gap-2 h-5 m-0 mb-4 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/good-for.svg" alt="" width="20" height="20" /> Vessel Is Good For: <i class="help-dot"></i></h2>
+            <div class="field full tag-field relative h-10 w-full">
               <span>Category</span>
-              <em>Watersports ×</em>
-              <em>Fishing ×</em>
-              <b>2/4</b>
+              <em>Watersports<i class="tag-close"></i></em>
+              <em>Fishing<i class="tag-close"></i></em>
+              <b><span>2</span><span>/4</span></b>
             </div>
           </section>
 
-          <section class="group price-block">
-            <h2><span>$</span> Price</h2>
-            <div class="row two segmented" data-segmented="priceMode">
-              <button type="button" data-value="range">Price Range <i class="help-dot">?</i></button>
+          <section class="group price-block relative mb-10">
+            <h2 class="flex items-center gap-2 h-5 m-0 mb-4 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/price.svg" alt="" width="20" height="20" /> Price</h2>
+            <div class="row two segmented grid grid-cols-1 sm:grid-cols-2 gap-5" data-segmented="priceMode">
+              <button type="button" data-value="range">Price Range <i class="help-dot"></i></button>
               <button type="button" data-value="fixed">Fixed Price</button>
             </div>
-            <label class="field full price-input"><span>Price*</span><input value="100,000" /><b>USD⌄</b></label>
-            <div class="market">
-              <div>
-                <strong>Price is $1020,156 above market</strong>
-                <p>Compared to similar listings on other platforms.</p>
-                <a href="#">Learn More</a>
+            <label class="field full price-input relative block h-10 w-full mt-4"><span>Price*</span><input placeholder=" " value="100,000" /><b><span>USD</span><img src="./assets/chevron-down.svg" alt="" width="16" height="16" /></b></label>
+            <div class="market mt-3 flex flex-col sm:flex-row justify-between gap-3 sm:gap-5 w-full min-h-[72px] py-3 px-4 text-muted bg-[#fafafa] text-[11px] leading-4 rounded-[4px]">
+              <div class="flex items-start gap-1.5">
+                <img src="./assets/arrow-up.svg" alt="" width="12" height="12" class="flex-none mt-0.5" />
+                <div>
+                  <strong>Price is $1020,156 above market</strong>
+                  <p>Compared to similar listings on other platforms.</p>
+                  <a href="#">Learn More</a>
+                </div>
               </div>
               <div>
                 <span>Market range:</span>
                 <strong>$4,200,000 - $7,200,000</strong>
               </div>
             </div>
-            <label class="check hide"><input type="checkbox" /><span>Hide Price</span></label>
-            <p class="warning"><strong>Warning!</strong> Buyers often skip listings without a price. Hiding your price reduce inquiries substantially.</p>
+            <hr class="my-6 border-0 border-t border-line" />
+            <label class="check hide flex items-start gap-3">
+              <input type="checkbox" class="mt-0.5" />
+              <div class="flex flex-col gap-1.5">
+                <span class="text-ink-dark text-xs leading-[18px]">Hide Price</span>
+                <p class="warning m-0 text-muted text-[10.5px] leading-4"><strong>Warning!</strong> Buyers often skip listings without a price. Hiding your price reduce inquiries substantially.</p>
+              </div>
+            </label>
           </section>
 
-          <section class="group taxes">
-            <h2><span>%</span> Taxes</h2>
-            <div class="row two">
-              <label class="field select"><span>Tax Status</span><button type="button"></button></label>
-              <label class="field select"><span>Import Duty Paid*</span><button type="button">Yes</button></label>
+          <section class="group taxes relative mb-9">
+            <h2 class="flex items-center gap-2 h-5 m-0 mb-4 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/taxes.svg" alt="" width="20" height="20" /> Taxes</h2>
+            <div class="row two grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <label class="field select relative block h-10"><span>Tax Status</span><button type="button"></button></label>
+              <label class="field select relative block h-10"><span>Import Duty Paid*</span><button type="button">Yes</button></label>
             </div>
-            <label class="field select duty"><span>Country Of Duty*</span><button type="button"></button><i class="help-dot">?</i></label>
+            <label class="field select duty relative block h-10 w-[calc((100%-20px)/2)]"><span>Country Of Duty*</span><button type="button"></button><i class="help-dot"></i></label>
           </section>
 
-          <section class="group warranties">
-            <h2><span>▤</span> Warranties</h2>
-            <div class="warranty-list">
+          <section class="group warranties relative mb-6">
+            <h2 class="flex items-center gap-2 h-5 m-0 mb-4 text-muted text-xs font-medium leading-5 uppercase"><img src="./assets/warranties.svg" alt="" width="20" height="20" /> Warranties</h2>
+            <div class="warranty-list flex flex-col gap-2">
               <article class="warranty-card">
                 <p>General <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /><i></i></label>
                 <button class="toggle" type="button" data-toggle="generalWarranty" aria-label="General Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Engine <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /><i></i></label>
                 <button class="toggle" type="button" data-toggle="engineWarranty" aria-label="Engine Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Hull <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /><i></i></label>
                 <button class="toggle" type="button" data-toggle="hullWarranty" aria-label="Hull Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Generator <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /><i></i></label>
                 <button class="toggle" type="button" data-toggle="generatorWarranty" aria-label="Generator Warranty enabled"><span></span></button>
               </article>
             </div>
           </section>
 
-          <div class="actions">
-            <button class="back" type="button">← Back</button>
-            <button class="save" type="submit">Save &amp; Next →</button>
+          <div class="actions grid grid-cols-[auto_1fr] gap-6 w-full items-center">
+            <button class="back inline-flex items-center gap-2 h-10 rounded-[4px] text-sm font-medium leading-5 p-0 text-ink bg-transparent border-0" type="button"><img src="./assets/arrow-left.svg" alt="" width="20" height="20" /> Back</button>
+            <button class="save inline-flex items-center justify-center gap-2 h-10 rounded-[4px] text-sm font-medium leading-5 text-white bg-purple border border-white/20" type="submit">Save &amp; Next <img src="./assets/arrow-left.svg" alt="" width="20" height="20" class="rotate-180 brightness-0 invert" /></button>
           </div>
         </form>
       </section>
     </main>
 
-    <div class="modal-backdrop" data-modal hidden>
-      <section class="model-modal" role="dialog" aria-modal="true" aria-labelledby="model-modal-title">
-        <header>
-          <h2 id="model-modal-title">Create New Model</h2>
-          <button class="modal-close" type="button" aria-label="Close model creation modal">×</button>
+    <div class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-6 bg-[rgba(8,7,12,0.42)]" data-modal hidden>
+      <section class="model-modal w-[min(440px,100%)] p-6 bg-white rounded-lg shadow-modal" role="dialog" aria-modal="true" aria-labelledby="model-modal-title">
+        <header class="flex items-center justify-between gap-3">
+          <h2 id="model-modal-title" class="m-0 text-ink text-xl font-medium leading-7">Create New Model</h2>
+          <button class="modal-close w-8 h-8 text-muted bg-transparent border-0 text-2xl leading-none" type="button" aria-label="Close model creation modal">×</button>
         </header>
-        <p class="modal-copy">This model will appear only under My Created Models for your account unless the shipyard adds an official version later.</p>
-        <label class="field modal-field" for="new-model-name">
+        <p class="modal-copy mt-3 mb-[22px] text-muted text-sm leading-5">This model will appear only under My Created Models for your account unless the shipyard adds an official version later.</p>
+        <label class="field modal-field relative block h-10 mb-7" for="new-model-name">
           <span>Model Name*</span>
-          <input id="new-model-name" />
+          <input id="new-model-name" placeholder=" " />
           <p class="field-message" id="new-model-message"></p>
         </label>
-        <footer>
-          <button class="secondary-action" type="button" data-cancel-model>Cancel</button>
-          <button class="primary-action" type="button" data-create-model>Create Model</button>
+        <footer class="flex items-center justify-end gap-3">
+          <button class="secondary-action min-w-[112px] h-10 px-4 rounded-[4px] text-sm font-medium leading-5 text-ink bg-white border border-line" type="button" data-cancel-model>Cancel</button>
+          <button class="primary-action min-w-[112px] h-10 px-4 rounded-[4px] text-sm font-medium leading-5 text-white bg-purple border border-purple" type="button" data-create-model>Create Model</button>
         </footer>
       </section>
     </div>
